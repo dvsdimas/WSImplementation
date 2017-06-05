@@ -8,6 +8,7 @@
 *.war
 *.ear
 
+target
 gs-messaging-stomp-websocket.iml
 .idea
 
