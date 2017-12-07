@@ -7,6 +7,9 @@
 *.jar
 *.war
 *.ear
+*.iml
+
+log4j2.xml
 
 target
 gs-messaging-stomp-websocket.iml

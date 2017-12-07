@@ -19,7 +19,7 @@ public class TextWSHandler extends TextWebSocketHandler {
     private final Set<WebSocketSession> sessions = Collections.synchronizedSet(new HashSet<>());
 
     @Override
-    public void handleTextMessage(WebSocketSession session, TextMessage message) throws InterruptedException, IOException {
+    public void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
         session.sendMessage(new TextMessage(message.getPayload()));
     }
 

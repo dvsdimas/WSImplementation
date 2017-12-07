@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+
+    <Properties>
+        <Property name="layout">%level{WARN=W, DEBUG=D, ERROR=E, TRACE=T, INFO=I} %d{yyMMdd HHmmss.SSS} [%t] %logger{1} - %msg%n%ex{full}</Property>
+    </Properties>
+
+    <Appenders>
+
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${layout}"/>
+            <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Console>
+
+    </Appenders>
+
+    <Loggers>
+
+        <Logger name="org.springframework">
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Logger>
+
+        <Logger name="com.mchange.v2">
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Logger>
+
+        <Logger name="com.devexperts.dxcore.server.dao">
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Logger>
+
+        <Logger name="com.devexperts.dxauth.server.dao">
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Logger>
+
+        <Logger name="com.devexperts.dxconfig.server.dao">
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Logger>
+
+        <Logger name="org.apache.log4j.jmx">
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Logger>
+
+        <Root level="DEBUG">
+            <AppenderRef ref="Console"/>
+        </Root>
+
+    </Loggers>
+
+</Configuration>
