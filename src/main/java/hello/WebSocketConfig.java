@@ -6,13 +6,17 @@ package hello;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.*;
+import javax.annotation.Resource;
 
 @Configuration
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
 
+    @Resource
+    WebSocketHandler webSocketHandler;
+
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(new TextWSHandler(), "/name");
+        registry.addHandler(webSocketHandler, "/name");
     }
 
 }
