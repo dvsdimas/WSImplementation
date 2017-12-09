@@ -53,10 +53,13 @@
         {
             if ("WebSocket" in window) {
 
+                // var ws = new WebSocket("ws://" + location.host + "/name");
                 var ws = new WebSocket("ws://localhost:8080/name");
 
+                var counter = 0;
+
                 function sendTestMessage() {
-                    var msg = "This is TEST message ";
+                    var msg = "This is TEST message [" + counter++ + "]";
                     addTextRow("Sent test message [" + msg + "]");
                     ws.send(msg);
                 }

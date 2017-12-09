@@ -7,7 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 
-/**
+/*
  * Created by dmylnev on 08.12.17.
  */
 

@@ -1,6 +1,6 @@
 package hello;
 
-/**
+/*
  * Created by dmylnev on 05.06.2017.
  */
 
@@ -13,10 +13,10 @@ import javax.annotation.Resource;
 public class WebSocketConfig implements WebSocketConfigurer {
 
     @Resource
-    WebSocketHandler webSocketHandler;
+    private WebSocketHandler webSocketHandler;
 
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(webSocketHandler, "/name");
+        registry.addHandler(webSocketHandler, "/name").setAllowedOrigins("*");
     }
 
 }

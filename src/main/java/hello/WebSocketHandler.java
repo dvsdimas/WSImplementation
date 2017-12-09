@@ -31,7 +31,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 //    GameBuilder gameBuilder;
 
     @Resource
-    private WebSocketWatchDog dog;
+    private WebSocketWatchDog dog; // TODO: ADD MY CODE
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
@@ -47,7 +47,9 @@ public class WebSocketHandler extends TextWebSocketHandler {
 //        logger.debug("sending websocket message: " + response);
 //        session.sendMessage(new TextMessage(response));
 
-        dog.sessionAlive(session); // ADD MY CODE
+        dog.sessionAlive(session); // TODO: ADD MY CODE
+
+        session.sendMessage(message);// TODO remove
     }
 
     @Override
@@ -56,7 +58,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
         logger.debug("websocket connection established.. player header message: " + session.getHandshakeHeaders().get("player_message"));
         session.sendMessage(new TextMessage("connection established.."));
 
-        dog.sessionAlive(session); // ADD MY CODE
+        dog.sessionAlive(session); // TODO: ADD MY CODE
     }
 
     @Override
@@ -67,7 +69,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 //            syncPlayerStatus(playerMessage, false);
 //        }
 
-        dog.sessionKilled(session); // ADD MY CODE
+        dog.sessionKilled(session); // TODO: ADD MY CODE
     }
 
     @Override
@@ -78,7 +80,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 //            syncPlayerStatus(playerMessage, false);
 //        }
 
-        dog.sessionKilled(session); // ADD MY CODE
+        dog.sessionKilled(session); // TODO: ADD MY CODE
     }
 
     @Override
@@ -89,7 +91,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 //            syncPlayerStatus(playerMessage, true);
 //        }
 
-        dog.sessionAlive(session); // ADD MY CODE
+        dog.sessionAlive(session); // TODO: ADD MY CODE
     }
 
     private void authenticate(WebSocketSession session) throws IOException {
