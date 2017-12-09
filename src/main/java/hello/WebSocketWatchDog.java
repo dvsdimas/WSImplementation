@@ -31,7 +31,7 @@ public class WebSocketWatchDog implements Runnable {
 
     private final ConcurrentHashMap<WebSocketSession, Long> sessions = new ConcurrentHashMap<>();
 
-    private final Thread thread = new Thread(this);
+    private final Thread thread = new Thread(this, "WebSocketWatchDogThread");
     private volatile boolean working = false;
     private long prevExecTime = 0;
 
@@ -152,12 +152,6 @@ public class WebSocketWatchDog implements Runnable {
                 logger.warn("Session [" + session + "] close error [" + e.getMessage() + "]", e);
             }
         }
-
-        try {
-            handler.handleTransportError(session, new Exception("WebSocket timeout exception"));
-        } catch (Exception e) {
-            logger.error("invalidateSession error - [" + e.getMessage() + "]", e);
-        }
     }
 
     private void checkStaleSessions() {
@@ -189,15 +183,17 @@ public class WebSocketWatchDog implements Runnable {
         sessions.forEachKey(cores, (s) -> {
 
             try {
-                s.sendMessage(ping);
+                if(s.isOpen()) {
+                    s.sendMessage(ping);
+                    return;
+                }
             } catch (IOException e) {
-
                 if(logger.isDebugEnabled()) {
                     logger.error("Session [" + s + "] ping error. Invalidating session.");
                 }
-
-                broken.add(s);
             }
+
+            broken.add(s);
         } );
 
         broken.forEach(this::invalidateSession);
