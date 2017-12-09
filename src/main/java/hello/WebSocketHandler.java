@@ -30,7 +30,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 //    @Resource
 //    GameBuilder gameBuilder;
 
-    @Resource
+    @Resource                      // TODO: ADD MY CODE
     private WebSocketWatchDog dog; // TODO: ADD MY CODE
 
     @Override
@@ -48,8 +48,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
 //        session.sendMessage(new TextMessage(response));
 
         dog.sessionAlive(session); // TODO: ADD MY CODE
-
-        session.sendMessage(message);// TODO remove
     }
 
     @Override
