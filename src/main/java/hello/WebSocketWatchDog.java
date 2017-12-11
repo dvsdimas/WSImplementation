@@ -84,7 +84,7 @@ public class WebSocketWatchDog implements Runnable {
 
     public void sessionAlive(final WebSocketSession session){
 
-        if(session == null) return;
+        if(session == null) throw new IllegalArgumentException("WebSocketSession cannot be null");
 
         if(logger.isDebugEnabled()) {
             logger.debug("sessionAlive [" + session + "]");
@@ -94,6 +94,8 @@ public class WebSocketWatchDog implements Runnable {
     }
 
     public void sessionKilled(final WebSocketSession session){
+
+        if(session == null) throw new IllegalArgumentException("WebSocketSession cannot be null");
 
         if(logger.isDebugEnabled()) {
             logger.debug("sessionKilled [" + session + "]");
